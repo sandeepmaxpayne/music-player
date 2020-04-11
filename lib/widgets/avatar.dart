@@ -7,10 +7,12 @@ Widget avatar(File f, String title, MaterialColor color) {
     borderRadius: BorderRadius.circular(20.0),
     elevation: 4.0,
     child: f != null
-        ? Image.file(
-            f,
-            fit: BoxFit.cover,
-            filterQuality: FilterQuality.medium,
+        ? CircleAvatar(
+            backgroundImage: Image.file(
+              f,
+              fit: BoxFit.cover,
+              filterQuality: FilterQuality.high,
+            ).image,
           )
         : CircleAvatar(
             child: Icon(Icons.play_arrow, color: Colors.white38),

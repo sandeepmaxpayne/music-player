@@ -46,9 +46,11 @@ class RootPage extends StatelessWidget {
         ],
       ),
       body: rootIW.isLoading
+          //TODO circularProgressIndicator
           ? Center(child: CircularProgressIndicator())
           : Scrollbar(child: FMPListView()),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey.shade800,
         child: Icon(Icons.shuffle),
         onPressed: () {
           shuffleSongs();

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:flute_music_player/flute_music_player.dart';
@@ -42,19 +43,20 @@ class _AlbumUIState extends State<AlbumUI> with SingleTickerProviderStateMixin {
     var myHero = Hero(
       tag: widget.song.title,
       child: Material(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(10.0),
+        shadowColor: Colors.black,
         elevation: 5.0,
         child: f != null
             ? Image.file(
                 f,
                 fit: BoxFit.cover,
-                height: 250.0,
+//                height: 250.0,
                 gaplessPlayback: true,
               )
             : Image.asset(
                 "assets/music_record.jpg",
-                fit: BoxFit.cover,
-                height: 250.0,
+                fit: BoxFit.scaleDown,
+                // height: 250.0,
                 gaplessPlayback: false,
               ),
       ),

@@ -30,7 +30,7 @@ class _NowPlayingState extends State<NowPlaying> {
 
   get durationText =>
       duration != null ? duration.toString().split('.').first : '';
-  get positionText => position != null ? duration.toString().split('.') : '';
+  get positionText => position != null ? position.toString().split('.') : '';
 
   bool isMuted = false;
 
@@ -142,6 +142,7 @@ class _NowPlayingState extends State<NowPlaying> {
 
   @override
   Widget build(BuildContext context) {
+    print("$positionText $durationText");
     Widget _buildPlayer() => Container(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -170,8 +171,9 @@ class _NowPlayingState extends State<NowPlaying> {
                         onTap: () => prev(widget.songData),
                         iconData: Icons.skip_previous),
                     ControlButton(
-                        onTap: () =>
-                            isPlaying ? pause() : () => play(widget.ssong),
+                        onTap: isPlaying
+                            ? () => pause()
+                            : () => play(widget.ssong),
                         iconData: isPlaying ? Icons.pause : Icons.play_arrow),
                     ControlButton(
                         onTap: () => next(widget.songData),
@@ -192,7 +194,7 @@ class _NowPlayingState extends State<NowPlaying> {
                   children: <Widget>[
                     Text(
                       position != null
-                          ? "${positionText ?? ''} / ${durationText ?? ''}"
+                          ? "${positionText[0] ?? ''} -> ${durationText ?? ''}"
                           : duration != null ? durationText : '',
                       style: TextStyle(fontSize: 22.0),
                     ),
@@ -201,7 +203,7 @@ class _NowPlayingState extends State<NowPlaying> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       IconButton(
                         icon: isMuted
