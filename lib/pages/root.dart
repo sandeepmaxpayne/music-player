@@ -12,7 +12,13 @@ class RootPage extends StatelessWidget {
     //go to now playing
     void nowPlaying(Song s, {bool nowPlayTap: false}) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => NowPlaying()));
+          context,
+          MaterialPageRoute(
+              builder: (context) => NowPlaying(
+                    ssong: s,
+                    songData: rootIW.songData,
+                    nowPlayTap: nowPlayTap,
+                  )));
     }
 
     void shuffleSongs() {
@@ -24,19 +30,15 @@ class RootPage extends StatelessWidget {
         title: Text('Music Player'),
         actions: <Widget>[
           Container(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Center(
-                child: InkWell(
-                  child: Text('Now Playing'),
-                  onTap: () => nowPlaying(
-                    rootIW.songData.songs[
-                        (rootIW.songData.currentIndex == null ||
-                                rootIW.songData.currentIndex < 0)
-                            ? 0
-                            : rootIW.songData.currentIndex],
-                    nowPlayTap: true,
-                  ),
+            child: Center(
+              child: InkWell(
+                child: Text('Now Playing'),
+                onTap: () => nowPlaying(
+                  rootIW.songData.songs[(rootIW.songData.currentIndex == null ||
+                          rootIW.songData.currentIndex < 0)
+                      ? 0
+                      : rootIW.songData.currentIndex],
+                  nowPlayTap: true,
                 ),
               ),
             ),

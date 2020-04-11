@@ -1,6 +1,9 @@
 import 'package:flute_music_player/flute_music_player.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/data/song_data.dart';
+import 'package:music_player/widgets/album_ui.dart';
+import 'package:music_player/widgets/blur_filter.dart';
+import 'package:music_player/widgets/blur_widgt.dart';
 import 'package:music_player/widgets/control_button.dart';
 
 enum PlayerState { STOPPED, PLAYING, PAUSED }
@@ -203,11 +206,11 @@ class _NowPlayingState extends State<NowPlaying> {
                       IconButton(
                         icon: isMuted
                             ? Icon(
-                                Icons.headset,
+                                Icons.headset_off,
                                 color: Theme.of(context).unselectedWidgetColor,
                               )
                             : Icon(
-                                Icons.headset_off,
+                                Icons.headset,
                                 color: Theme.of(context).unselectedWidgetColor,
                               ),
                         color: Theme.of(context).primaryColor,
@@ -226,7 +229,11 @@ class _NowPlayingState extends State<NowPlaying> {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        AlbumUI(song, duration, position),
+        AlbumUI(
+          song: song,
+          duration: duration,
+          position: position,
+        ),
         Material(
           child: _buildPlayer(),
           color: Colors.transparent,
@@ -244,13 +251,9 @@ class _NowPlayingState extends State<NowPlaying> {
         child: Stack(
           //TODO check stackfit
           fit: StackFit.expand,
-          children: <Widget>[
-            blurWeight(song),
-            blurFilter(),
-            playerUI
-          ],
+          children: <Widget>[blurWidget(song), blurFilter(), playerUI],
         ),
       ),
-    )
+    );
   }
 }

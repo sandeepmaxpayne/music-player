@@ -9,7 +9,6 @@ class FMPInheritedWidget extends InheritedWidget {
       : super(child: child);
 
   static FMPInheritedWidget of(BuildContext context) {
-    // ignore: deprecated_member_use
     return context.inheritFromWidgetOfExactType(FMPInheritedWidget);
   }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flute_music_player/flute_music_player.dart';
 import 'package:music_player/utility/themes.dart';
 
 import 'musicapp.dart';
@@ -15,7 +14,6 @@ class _MyThemeAppState extends State<MyThemeApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       theme: darkTheme,
       home: MyMusicApp(),
     );

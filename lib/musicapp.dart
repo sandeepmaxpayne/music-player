@@ -16,6 +16,7 @@ class _MyMusicAppState extends State<MyMusicApp> {
   @override
   void initState() {
     super.initState();
+    initPlatformState();
   }
 
   @override
