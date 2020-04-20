@@ -13,12 +13,12 @@ Widget blurWidget(Song song) {
           ? Image.file(
               f,
               fit: BoxFit.cover,
-              color: Colors.deepPurple,
+              color: Colors.transparent,
               colorBlendMode: BlendMode.darken,
             )
           : Image(
-              image: AssetImage("assets/lady.jpeg"),
-              color: Colors.deepPurple,
+              image: AssetImage("assets/headphone.jpeg"),
+              color: Colors.transparent,
               fit: BoxFit.cover,
               colorBlendMode: BlendMode.darken,
             ),

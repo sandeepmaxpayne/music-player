@@ -27,7 +27,13 @@ class FMPListView extends StatelessWidget {
             child: avatar(artFile, s.title, color),
             tag: s.title,
           ),
-          title: Text(s.title),
+          title: Text(
+            s.title,
+            style: TextStyle(
+              fontFamily: 'Patrick',
+              fontStyle: FontStyle.italic,
+            ),
+          ),
           subtitle: Text(
             '- ${s.artist}',
             style: Theme.of(context).textTheme.caption,

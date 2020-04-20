@@ -33,6 +33,7 @@ class _NowPlayingState extends State<NowPlaying> {
   get positionText => position != null ? position.toString().split('.') : '';
 
   bool isMuted = false;
+  bool isdark = false;
 
   @override
   void initState() {
@@ -143,6 +144,7 @@ class _NowPlayingState extends State<NowPlaying> {
   @override
   Widget build(BuildContext context) {
     print("$positionText $durationText");
+
     Widget _buildPlayer() => Container(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -151,10 +153,8 @@ class _NowPlayingState extends State<NowPlaying> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    Text(
-                      song.title,
-                      style: Theme.of(context).textTheme.headline,
-                    ),
+                    Text(song.title,
+                        style: Theme.of(context).textTheme.headline),
                     Text(
                       song.artist,
                       style: Theme.of(context).textTheme.caption,
@@ -182,24 +182,49 @@ class _NowPlayingState extends State<NowPlaying> {
                 ),
                 duration == null
                     ? Container()
-                    : Slider(
-                        value: position?.inMilliseconds?.toDouble() ?? 0,
-                        onChanged: (double value) =>
-                            audioPlayer.seek((value / 1000).roundToDouble()),
-                        min: 0.0,
-                        max: duration.inMilliseconds.toDouble(),
+                    : Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            position != null
+                                ? "${positionText[0] ?? ''}"
+                                : duration != null ? durationText : '',
+                            style: TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.w400),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: SliderTheme(
+                              data: SliderTheme.of(context).copyWith(
+                                activeTrackColor: Colors.white,
+                                inactiveTrackColor: Color(0xFF8D8E98),
+                                overlayColor: Color(0x2FEB1555),
+                                thumbColor: Color(0xFFEB1555),
+                                overlayShape: RoundSliderOverlayShape(
+                                    overlayRadius: 30.0),
+                                thumbShape: RoundSliderThumbShape(
+                                    enabledThumbRadius: 10.0),
+                              ),
+                              child: Slider(
+                                activeColor: Color(0xff455A64),
+                                value:
+                                    position?.inMilliseconds?.toDouble() ?? 0,
+                                onChanged: (double value) => audioPlayer
+                                    .seek((value / 1000).roundToDouble()),
+                                min: 0.0,
+                                max: duration.inMilliseconds.toDouble(),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            durationText,
+                            style: TextStyle(
+                                fontSize: 15.0, fontWeight: FontWeight.w400),
+                          ),
+                        ],
                       ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(
-                      position != null
-                          ? "${positionText[0] ?? ''} -> ${durationText ?? ''}"
-                          : duration != null ? durationText : '',
-                      style: TextStyle(fontSize: 22.0),
-                    ),
-                  ],
-                ),
+//
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: Row(

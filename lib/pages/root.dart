@@ -2,10 +2,15 @@ import 'package:flute_music_player/flute_music_player.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/widgets/MPInheritedWidget.dart';
 import 'package:music_player/widgets/fmp_listView.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'now_playing.dart';
 
-class RootPage extends StatelessWidget {
+class RootPage extends StatefulWidget {
+  @override
+  _RootPageState createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     final rootIW = FMPInheritedWidget.of(context);
@@ -27,12 +32,19 @@ class RootPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Music Player'),
+        title: Text(
+          'My Music',
+          style: TextStyle(fontFamily: 'Dosis'),
+        ),
         actions: <Widget>[
           Container(
             child: Center(
               child: InkWell(
-                child: Text('Now Playing'),
+                child: Text(
+                  'Now Playing',
+                  style: TextStyle(
+                      fontFamily: 'Dosis', fontWeight: FontWeight.w400),
+                ),
                 onTap: () => nowPlaying(
                   rootIW.songData.songs[(rootIW.songData.currentIndex == null ||
                           rootIW.songData.currentIndex < 0)
@@ -47,10 +59,16 @@ class RootPage extends StatelessWidget {
       ),
       body: rootIW.isLoading
           //TODO circularProgressIndicator
-          ? Center(child: CircularProgressIndicator())
+          ? Center(
+              child: SpinKitSquareCircle(
+              color: Color(0xFFCE93D8),
+              // controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200))
+              size: 100.0,
+              duration: Duration(seconds: 5),
+            ))
           : Scrollbar(child: FMPListView()),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey.shade800,
+        backgroundColor: Color(0xFFefb1ff),
         child: Icon(Icons.shuffle),
         onPressed: () {
           shuffleSongs();

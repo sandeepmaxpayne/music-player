@@ -45,11 +45,12 @@ class _AlbumUIState extends State<AlbumUI> with SingleTickerProviderStateMixin {
       child: Material(
         borderRadius: BorderRadius.circular(10.0),
         shadowColor: Colors.black,
-        elevation: 5.0,
+        elevation: 6.0,
         child: f != null
             ? Image.file(
                 f,
-                fit: BoxFit.cover,
+                fit: BoxFit.scaleDown,
+
 //                height: 250.0,
                 gaplessPlayback: true,
               )
