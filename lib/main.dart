@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:music_player/logo_page.dart';
 import 'package:music_player/utility/themes.dart';
-import 'musicapp.dart';
 
 void main() => runApp(MyThemeApp());
 
@@ -14,7 +14,8 @@ class _MyThemeAppState extends State<MyThemeApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: myTheme,
-      home: MyMusicApp(),
+      initialRoute: 'logo',
+      routes: {'logo': (context) => MyMusicLogo()},
     );
   }
 }

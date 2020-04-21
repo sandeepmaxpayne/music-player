@@ -30,9 +30,9 @@ class FMPListView extends StatelessWidget {
           title: Text(
             s.title,
             style: TextStyle(
-              fontFamily: 'Patrick',
-              fontStyle: FontStyle.italic,
-            ),
+                fontFamily: 'Patrick',
+                fontStyle: FontStyle.italic,
+                fontSize: 18.0),
           ),
           subtitle: Text(
             '- ${s.artist}',

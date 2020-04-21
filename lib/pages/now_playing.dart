@@ -233,7 +233,7 @@ class _NowPlayingState extends State<NowPlaying> {
                       IconButton(
                         icon: isMuted
                             ? Icon(
-                                Icons.headset_off,
+                                Icons.volume_off,
                                 color: Theme.of(context).unselectedWidgetColor,
                               )
                             : Icon(
@@ -270,11 +270,27 @@ class _NowPlayingState extends State<NowPlaying> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Now Playing'),
+        title: Text(
+          'Now Playing',
+        ),
         centerTitle: true,
+        leading: Builder(
+          builder: (BuildContext context) => GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Hero(
+              tag: 'randomAnim',
+              transitionOnUserGestures: true,
+              child: Image.asset(
+                'assets/headphonenb.png',
+              ),
+            ),
+          ),
+        ),
       ),
       body: Container(
-        color: Theme.of(context).backgroundColor,
+        color: Colors.transparent,
         child: Stack(
           //TODO check stackfit
           fit: StackFit.expand,

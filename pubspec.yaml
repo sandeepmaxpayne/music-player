@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flute_music_player: ^0.0.6
   flutter_spinkit: ^4.1.2
+  custom_splash: ^0.0.2
 
 
 
@@ -51,7 +52,7 @@ flutter:
   fonts:
     - family: Dosis
       fonts:
-        - asset: font/Dosis-VariableFont_wght.tff
+        - asset: font/Dosis-VariableFont_wght.ttf
           weight: 100
 
     - family: Patrick

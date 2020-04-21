@@ -1,6 +1,7 @@
 import 'package:flute_music_player/flute_music_player.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/widgets/MPInheritedWidget.dart';
+import 'package:music_player/widgets/button_shape.dart';
 import 'package:music_player/widgets/fmp_listView.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'now_playing.dart';
@@ -34,7 +35,9 @@ class _RootPageState extends State<RootPage> {
       appBar: AppBar(
         title: Text(
           'My Music',
-          style: TextStyle(fontFamily: 'Dosis'),
+          style: TextStyle(
+            fontFamily: 'Dosis',
+          ),
         ),
         actions: <Widget>[
           Container(
@@ -69,10 +72,17 @@ class _RootPageState extends State<RootPage> {
           : Scrollbar(child: FMPListView()),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFFefb1ff),
-        child: Icon(Icons.shuffle),
+        child: Icon(
+          Icons.shuffle,
+          color: Colors.white70,
+        ),
         onPressed: () {
           shuffleSongs();
         },
+        tooltip: 'Random Songs',
+        elevation: 10.0,
+        shape: DiamondBorder(),
+        heroTag: 'randomAnim',
       ),
     );
   }
